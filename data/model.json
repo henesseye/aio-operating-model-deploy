@@ -1,0 +1,1200 @@
+{
+  "name": "AIO Betriebsmodell",
+  "segments": [
+    {
+      "id": "governance",
+      "key": "governance",
+      "label": "Governance, Risk, Compliance",
+      "color": "#8dbadf",
+      "order": 1,
+      "description": "Strategische Führung, Risikomanagement und Compliance-Überwachung für alle IT-Services des AIO.",
+      "links": [
+        {
+          "title": "IT-Governance Framework",
+          "url": "https://intranet.so.ch/it-governance",
+          "type": "internal"
+        },
+        {
+          "title": "Risk Management Policy",
+          "url": "/docs/risk-management-policy.pdf",
+          "type": "document"
+        }
+      ],
+      "processes": [
+        {
+          "id": "g01",
+          "code": "M1-1",
+          "abbr": "G01",
+          "name": "G01 Service Strategy Management",
+          "description": "Strategische Planung und Management der IT-Services zur Unterstützung der Geschäftsziele",
+          "links": [
+            {
+              "title": "Service Strategy Dokumentation",
+              "url": "https://example.com/service-strategy",
+              "type": "document"
+            },
+            {
+              "title": "ITIL Framework",
+              "url": "https://itil.org",
+              "type": "external"
+            }
+          ],
+          "order": 1,
+          "is_visible": true,
+          "segmentKey": "governance"
+        },
+        {
+          "id": "g02",
+          "code": "M2-2",
+          "abbr": "G02",
+          "name": "G02 AIO Risk Management",
+          "description": "Identifikation, Bewertung und Management von IT-Risiken sowie Compliance-Überwachung",
+          "links": [
+            {
+              "title": "Risk Assessment Framework",
+              "url": "https://example.com/risk-framework",
+              "type": "document"
+            }
+          ],
+          "order": 2,
+          "is_visible": true
+        },
+        {
+          "id": "g03",
+          "code": "K3-7",
+          "abbr": "G03",
+          "name": "G03 Qualitätsgremium (QG3)",
+          "description": "Qualitätssicherung und -überwachung aller IT-Services durch regelmäßige Reviews und Audits",
+          "links": [
+            {
+              "title": "QM-Handbuch",
+              "url": "https://intranet.so.ch/qm-handbuch",
+              "type": "internal"
+            },
+            {
+              "title": "Audit Checkliste",
+              "url": "/docs/audit-checklist.pdf",
+              "type": "document"
+            }
+          ],
+          "order": 3,
+          "is_visible": true
+        },
+        {
+          "id": "g04",
+          "code": "U2-1",
+          "abbr": "G04",
+          "name": "G04 KVP",
+          "description": "Kontinuierlicher Verbesserungsprozess zur stetigen Optimierung von Services und Arbeitsabläufen",
+          "links": [
+            {
+              "title": "KVP-Portal",
+              "url": "https://kvp.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Verbesserungsvorschlag einreichen",
+              "url": "https://kvp.so.ch/submit",
+              "type": "internal"
+            }
+          ],
+          "order": 4,
+          "is_visible": true
+        },
+        {
+          "id": "g05",
+          "code": "U2-4",
+          "abbr": "G05",
+          "name": "G05 IKS",
+          "description": "Internes Kontrollsystem zur Überwachung und Sicherstellung der Compliance und Governance",
+          "links": [
+            {
+              "title": "IKS-Dokumentation",
+              "url": "/docs/iks-handbuch.pdf",
+              "type": "document"
+            },
+            {
+              "title": "Kontrollmatrix",
+              "url": "https://intranet.so.ch/iks-matrix",
+              "type": "internal"
+            }
+          ],
+          "order": 5,
+          "is_visible": true
+        },
+        {
+          "id": "g06",
+          "code": "U2-5",
+          "abbr": "G06",
+          "name": "G06 Prozessaufnahme & Publikation",
+          "description": "Dokumentation und Veröffentlichung von Prozessbeschreibungen im Prozessportal",
+          "links": [
+            {
+              "title": "Prozessportal",
+              "url": "https://prozesse.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Prozessvorlage",
+              "url": "/templates/prozess-vorlage.docx",
+              "type": "document"
+            }
+          ],
+          "order": 6,
+          "is_visible": true
+        }
+      ]
+    },
+    {
+      "id": "zentrale",
+      "key": "zentrale",
+      "label": "Zentrale Dienste",
+      "color": "#bfcfe8",
+      "order": 2,
+      "description": "Zentrale IT-Services und Infrastrukturen, die alle Amtsstellen kantonsweit unterstützen",
+      "links": [
+        {
+          "title": "Service Katalog Zentrale Dienste",
+          "url": "https://services.so.ch/zentral",
+          "type": "internal"
+        },
+        {
+          "title": "SLA Dokumentation",
+          "url": "/docs/sla-zentrale-dienste.pdf",
+          "type": "document"
+        }
+      ],
+      "processes": [
+        {
+          "id": "u01",
+          "code": "U3-1",
+          "abbr": "U01",
+          "name": "U01 Budget MLP/IR",
+          "description": "Budgetplanung und -überwachung für Mehrjahresleistungsplanung und Informatikressourcen",
+          "links": [
+            {
+              "title": "MLP-Richtlinien",
+              "url": "/docs/mlp-richtlinien.pdf",
+              "type": "document"
+            },
+            {
+              "title": "Budget-Tool",
+              "url": "https://budget.so.ch",
+              "type": "internal"
+            }
+          ],
+          "order": 1,
+          "is_visible": true
+        },
+        {
+          "id": "u02",
+          "code": "U3-2",
+          "abbr": "U02",
+          "name": "U02 Budget GB/Einheiten",
+          "description": "Budgetverwaltung für Geschäftsbereiche und organisatorische Einheiten",
+          "links": [
+            {
+              "title": "Budgetverteilung",
+              "url": "https://budget.so.ch/verteilung",
+              "type": "internal"
+            },
+            {
+              "title": "Kostenstellen-Übersicht",
+              "url": "/docs/kostenstellen.xlsx",
+              "type": "document"
+            }
+          ],
+          "order": 2,
+          "is_visible": true
+        },
+        {
+          "id": "u03",
+          "code": "U3-3",
+          "abbr": "U03",
+          "name": "U03 Budget Voranschlag",
+          "description": "Erstellung und Management des jährlichen Budgetvoranschlags",
+          "links": [
+            {
+              "title": "Voranschlag-Template",
+              "url": "/templates/voranschlag.xlsx",
+              "type": "document"
+            },
+            {
+              "title": "Finanzplanung",
+              "url": "https://finanzen.so.ch/planung",
+              "type": "internal"
+            }
+          ],
+          "order": 3,
+          "is_visible": true
+        },
+        {
+          "id": "u04",
+          "code": "U3-4",
+          "abbr": "U04",
+          "name": "U04 Kosten-/Leistungsrechnung",
+          "description": "Erfassung, Zuordnung und Auswertung von Kosten und Leistungen für Transparenz und Steuerung",
+          "links": [
+            {
+              "title": "KLR-Handbuch",
+              "url": "/docs/klr-handbuch.pdf",
+              "type": "document"
+            },
+            {
+              "title": "Reporting Tool",
+              "url": "https://klr.so.ch",
+              "type": "internal"
+            }
+          ],
+          "order": 4,
+          "is_visible": true
+        },
+        {
+          "id": "u05",
+          "code": "U3-5",
+          "abbr": "U05",
+          "name": "U05 WoV Reporting",
+          "description": "Wirkungsorientierte Verwaltungsführung - Berichterstattung und Performance-Messung",
+          "links": [
+            {
+              "title": "WoV-Dashboard",
+              "url": "https://wov.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "KPI-Definitionen",
+              "url": "/docs/kpi-definitionen.pdf",
+              "type": "document"
+            }
+          ],
+          "order": 5,
+          "is_visible": true
+        },
+        {
+          "id": "u06",
+          "code": "U3-6",
+          "abbr": "U06",
+          "name": "U06 Wirtschaftlichkeitsrechnung",
+          "description": "Bewertung und Analyse der Wirtschaftlichkeit von IT-Investitionen und -Projekten",
+          "links": [
+            {
+              "title": "WiRe-Vorlage",
+              "url": "/templates/wirtschaftlichkeit.xlsx",
+              "type": "document"
+            },
+            {
+              "title": "ROI-Calculator",
+              "url": "https://tools.so.ch/roi-calc",
+              "type": "internal"
+            }
+          ],
+          "order": 6,
+          "is_visible": true
+        },
+        {
+          "id": "u07",
+          "code": "U3-7",
+          "abbr": "U07",
+          "name": "U07 Nachkontrolle Wirtschaftlichkeit",
+          "description": "Post-Implementierung Kontrolle und Bewertung der tatsächlichen vs. geplanten Wirtschaftlichkeit",
+          "links": [
+            {
+              "title": "Nachkontrolle-Prozess",
+              "url": "/docs/nachkontrolle-prozess.pdf",
+              "type": "document"
+            }
+          ],
+          "order": 7,
+          "is_visible": true
+        },
+        {
+          "id": "u08",
+          "code": "U3-8",
+          "abbr": "U08",
+          "name": "U08 Alabu",
+          "description": "Arbeitsplatz- und Büromanagement sowie Facility Services für AIO",
+          "links": [
+            {
+              "title": "Arbeitsplatz-Katalog",
+              "url": "https://facility.so.ch/katalog",
+              "type": "internal"
+            },
+            {
+              "title": "Raumbuchung",
+              "url": "https://booking.so.ch",
+              "type": "internal"
+            }
+          ],
+          "order": 8,
+          "is_visible": true
+        },
+        {
+          "id": "u09",
+          "code": "U1",
+          "abbr": "U09",
+          "name": "U09 Personal Management",
+          "description": "Personalplanung, -entwicklung und -administration für die AIO-Organisation",
+          "links": [
+            {
+              "title": "HR-Portal",
+              "url": "https://hr.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Personalleitfaden",
+              "url": "/docs/personal-leitfaden.pdf",
+              "type": "document"
+            },
+            {
+              "title": "Weiterbildungs-Katalog",
+              "url": "https://weiterbildung.so.ch",
+              "type": "internal"
+            }
+          ],
+          "order": 9,
+          "is_visible": true
+        }
+      ]
+    },
+    {
+      "id": "kunden",
+      "key": "kunden",
+      "label": "Kundenberatung & Projekte",
+      "color": "#c6b6d9",
+      "order": 3,
+      "description": "Beratung, Projektmanagement und maßgeschneiderte IT-Lösungen für Amtsstellen und Fachbereiche",
+      "links": [
+        {
+          "title": "Projektportal",
+          "url": "https://projekte.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Beratungsanfrage stellen",
+          "url": "https://helpdesk.so.ch/beratung",
+          "type": "internal"
+        },
+        {
+          "title": "Projektmanagement Handbuch",
+          "url": "/docs/pm-handbuch.pdf",
+          "type": "document"
+        }
+      ],
+      "processes": [
+        {
+          "id": "k01",
+          "code": "K1-1",
+          "abbr": "K01",
+          "name": "K01 Demand Management",
+          "order": 1,
+          "is_visible": true,
+          "description": "Strategisches Management der Nachfrage nach IT-Services und Priorisierung von Anforderungen",
+          "links": [
+            {
+              "title": "Demand Portal",
+              "url": "https://demand.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Anforderungsvorlage",
+              "url": "/templates/anforderung.docx",
+              "type": "document"
+            }
+          ]
+        },
+        {
+          "id": "k02",
+          "code": "K1-1-1",
+          "abbr": "K02",
+          "name": "K02 Meeting vorbereiten",
+          "order": 2,
+          "is_visible": true,
+          "description": "Strukturierte Vorbereitung von Kundenmeetings und Beratungsterminen",
+          "links": [
+            {
+              "title": "Meeting-Checkliste",
+              "url": "/docs/meeting-checkliste.pdf",
+              "type": "document"
+            },
+            {
+              "title": "Terminbuchung",
+              "url": "https://booking.so.ch/meetings",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "k03",
+          "code": "K1-2",
+          "abbr": "K03",
+          "name": "K03 Setup Beratung",
+          "order": 3,
+          "is_visible": true,
+          "description": "Einrichtung und Konfiguration von Beratungsleistungen für Kunden",
+          "links": [
+            {
+              "title": "Beratungs-Katalog",
+              "url": "https://beratung.so.ch/katalog",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "k04",
+          "code": "M2-1",
+          "abbr": "K04",
+          "name": "K04 Projektmanagement",
+          "order": 4,
+          "is_visible": true,
+          "description": "Professionelle Planung, Durchführung und Überwachung von IT-Projekten",
+          "links": [
+            {
+              "title": "PM-Handbuch",
+              "url": "/docs/projektmanagement-handbuch.pdf",
+              "type": "document"
+            },
+            {
+              "title": "Projekt-Portal",
+              "url": "https://projekte.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "k05",
+          "code": "U4-1",
+          "abbr": "K05",
+          "name": "K05 Beschaffung",
+          "order": 5,
+          "is_visible": true,
+          "description": "Beschaffung von IT-Hardware, Software und externen Dienstleistungen",
+          "links": [
+            {
+              "title": "Beschaffungs-Portal",
+              "url": "https://beschaffung.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Lieferantenkatalog",
+              "url": "/docs/lieferanten.xlsx",
+              "type": "document"
+            }
+          ]
+        },
+        {
+          "id": "k06",
+          "code": "U4-2",
+          "abbr": "K06",
+          "name": "K06 Vertragsmanagement",
+          "order": 6,
+          "is_visible": true,
+          "description": "Management und Überwachung aller IT-Verträge und Service Level Agreements",
+          "links": [
+            {
+              "title": "Vertrags-DB",
+              "url": "https://vertraege.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "SLA-Templates",
+              "url": "/templates/sla-vorlagen/",
+              "type": "document"
+            }
+          ]
+        },
+        {
+          "id": "k07",
+          "code": "U5-1",
+          "abbr": "K07",
+          "name": "K07 Ausbildungsmanagement",
+          "order": 7,
+          "is_visible": true,
+          "description": "Planung und Organisation von Weiterbildungsmaßnahmen für Mitarbeiter",
+          "links": [
+            {
+              "title": "Schulungsplan",
+              "url": "https://schulung.so.ch/plan",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "k08",
+          "code": "U5-2",
+          "abbr": "K08",
+          "name": "K08 Ausbildung Kunde",
+          "order": 8,
+          "is_visible": true,
+          "description": "Durchführung von Schulungen und Wissensvermittlung an Kunden",
+          "links": [
+            {
+              "title": "E-Learning Portal",
+              "url": "https://elearning.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "k09",
+          "code": "U2-2",
+          "abbr": "K09",
+          "name": "K09 Kundenanfragen",
+          "order": 9,
+          "is_visible": true,
+          "description": "Bearbeitung und Koordination eingehender Kundenanfragen",
+          "links": [
+            {
+              "title": "Ticket-System",
+              "url": "https://servicedesk.so.ch",
+              "type": "internal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bits",
+      "key": "bits",
+      "label": "Business IT Services",
+      "color": "#f0b7a4",
+      "order": 4,
+      "description": "Fachspezifische IT-Services und Anwendungen für die verschiedenen Geschäftsbereiche des Kantons",
+      "links": [
+        {
+          "title": "Business Applikationen Katalog",
+          "url": "https://apps.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Fachapplikationen Support",
+          "url": "https://helpdesk.so.ch/fachapps",
+          "type": "internal"
+        },
+        {
+          "title": "Business Continuity Plan",
+          "url": "/docs/bcp-business-services.pdf",
+          "type": "document"
+        }
+      ],
+      "processes": [
+        {
+          "id": "b01",
+          "code": "K3-1",
+          "abbr": "B01",
+          "name": "B01 Change Management",
+          "order": 1,
+          "is_visible": true,
+          "description": "Kontrolle und Genehmigung von Änderungen an IT-Services und Systemen",
+          "links": [
+            {
+              "title": "Change-Portal",
+              "url": "https://change.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Change-Kalender",
+              "url": "https://change.so.ch/calendar",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "b02",
+          "code": "K4-6",
+          "abbr": "B02",
+          "name": "B02 Problem Management",
+          "order": 2,
+          "is_visible": true,
+          "description": "Identifikation, Analyse und Lösung wiederkehrender IT-Probleme",
+          "links": [
+            {
+              "title": "Problem-DB",
+              "url": "https://problems.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "b03",
+          "code": "K4-2",
+          "abbr": "B03",
+          "name": "B03 Incident Management",
+          "order": 3,
+          "is_visible": true,
+          "description": "Schnelle Wiederherstellung des normalen Service-Betriebs bei Störungen",
+          "links": [
+            {
+              "title": "Incident-Portal",
+              "url": "https://incidents.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Eskalationsmatrix",
+              "url": "/docs/eskalation.pdf",
+              "type": "document"
+            }
+          ]
+        },
+        {
+          "id": "b04",
+          "code": "K3-5",
+          "abbr": "B04",
+          "name": "B04 Release & Deployment Mgmt",
+          "order": 4,
+          "is_visible": true,
+          "description": "Planung und Durchführung von Software-Releases und System-Deployments",
+          "links": [
+            {
+              "title": "Release-Kalender",
+              "url": "https://releases.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "b05",
+          "code": "K3-6",
+          "abbr": "B05",
+          "name": "B05 Service Validation & Testing",
+          "order": 5,
+          "is_visible": true,
+          "description": "Validierung und Testing von Services vor der Produktivsetzung",
+          "links": [
+            {
+              "title": "Test-Umgebungen",
+              "url": "https://test.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "b06",
+          "code": "U2-3",
+          "abbr": "B06",
+          "name": "B06 Service Reporting",
+          "order": 6,
+          "is_visible": true,
+          "description": "Überwachung und Berichterstattung über Service-Performance und -Qualität",
+          "links": [
+            {
+              "title": "Service-Dashboard",
+              "url": "https://dashboard.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "b07",
+          "code": "K2-6",
+          "abbr": "B07",
+          "name": "B07 Design Koordination",
+          "order": 7,
+          "is_visible": true,
+          "description": "Koordination und Abstimmung von Design-Entscheidungen und -Aktivitäten",
+          "links": [
+            {
+              "title": "Design-Portal",
+              "url": "https://design.so.ch",
+              "type": "internal"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ops",
+      "key": "ops",
+      "label": "Technische Services / Operations",
+      "color": "#f3cfae",
+      "order": 5,
+      "description": "Technische Infrastruktur, Systemadministration und Operations für den stabilen IT-Betrieb",
+      "links": [
+        {
+          "title": "Infrastructure Monitoring",
+          "url": "https://monitoring.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Incident Management",
+          "url": "https://incidents.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Operations Runbook",
+          "url": "/docs/operations-runbook.pdf",
+          "type": "document"
+        },
+        {
+          "title": "Disaster Recovery Plan",
+          "url": "/docs/disaster-recovery.pdf",
+          "type": "document"
+        }
+      ],
+      "processes": [
+        {
+          "id": "o01",
+          "code": "K3-2",
+          "abbr": "O01",
+          "name": "O01 Knowledge Management",
+          "order": 1,
+          "is_visible": true,
+          "description": "Verwaltung und Bereitstellung von Wissen und Dokumentation",
+          "links": [
+            {
+              "title": "Knowledge Base",
+              "url": "https://kb.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Wiki",
+              "url": "https://wiki.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o02",
+          "code": "K3-3",
+          "abbr": "O02",
+          "name": "O02 Service Asset & Config Mgmt",
+          "order": 2,
+          "is_visible": true,
+          "description": "Verwaltung aller IT-Assets und deren Konfigurationsdaten",
+          "links": [
+            {
+              "title": "CMDB",
+              "url": "https://cmdb.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Asset-Katalog",
+              "url": "https://assets.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o03",
+          "code": "K3-1",
+          "abbr": "O03",
+          "name": "O03 Change Management",
+          "order": 3,
+          "is_visible": true,
+          "description": "Operative Umsetzung genehmigter Änderungen an IT-Services",
+          "links": [
+            {
+              "title": "Change-Umsetzung",
+              "url": "https://change.so.ch/implement",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o04",
+          "code": "K2-3",
+          "abbr": "O04",
+          "name": "O04 Availability & Capacity Mgmt",
+          "order": 4,
+          "is_visible": true,
+          "description": "Sicherstellung der Verfügbarkeit und ausreichenden Kapazität von IT-Services",
+          "links": [
+            {
+              "title": "Monitoring Dashboard",
+              "url": "https://monitoring.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Kapazitätsplanung",
+              "url": "/docs/capacity-planning.xlsx",
+              "type": "document"
+            }
+          ]
+        },
+        {
+          "id": "o05",
+          "code": "U2-3",
+          "abbr": "O05",
+          "name": "O05 Service Reporting",
+          "order": 5,
+          "is_visible": true,
+          "description": "Operative Berichterstattung über Service-Status und -Metriken",
+          "links": [
+            {
+              "title": "Operations Dashboard",
+              "url": "https://ops.so.ch/dashboard",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o06",
+          "code": "K4-1",
+          "abbr": "O06",
+          "name": "O06 Service Desk SPOC",
+          "order": 6,
+          "is_visible": true,
+          "description": "Zentrale Anlaufstelle für alle IT-Service-Anfragen und -Störungen",
+          "links": [
+            {
+              "title": "Service Desk Portal",
+              "url": "https://servicedesk.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Self-Service Portal",
+              "url": "https://selfservice.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o07",
+          "code": "K4-6",
+          "abbr": "O07",
+          "name": "O07 Problem Management",
+          "order": 7,
+          "is_visible": true,
+          "description": "Operative Problembehandlung und Root-Cause-Analyse",
+          "links": [
+            {
+              "title": "Problem-Tracking",
+              "url": "https://problems.so.ch/ops",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o08",
+          "code": "K4-2",
+          "abbr": "O08",
+          "name": "O08 Incident Management",
+          "order": 8,
+          "is_visible": true,
+          "description": "Operative Störungsbehandlung und Service-Wiederherstellung",
+          "links": [
+            {
+              "title": "Incident Response",
+              "url": "https://incidents.so.ch/ops",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o09",
+          "code": "K4-4",
+          "abbr": "O09",
+          "name": "O09 Request Fulfilment",
+          "order": 9,
+          "is_visible": true,
+          "description": "Abwicklung standardisierter Service-Anfragen",
+          "links": [
+            {
+              "title": "Request Catalog",
+              "url": "https://requests.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o10",
+          "code": "K4-5",
+          "abbr": "O10",
+          "name": "O10 Continual Management",
+          "order": 10,
+          "is_visible": true,
+          "description": "Kontinuierliche Verbesserung der operativen Prozesse und Services",
+          "links": [
+            {
+              "title": "Improvement Portal",
+              "url": "https://improvement.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o11",
+          "code": "K4-10",
+          "abbr": "O11",
+          "name": "O11 Eskalations-Management",
+          "order": 11,
+          "is_visible": true,
+          "description": "Management von Eskalationsprozessen bei kritischen Vorfällen",
+          "links": [
+            {
+              "title": "Eskalations-Hotline",
+              "url": "tel:+41623254000",
+              "type": "external"
+            },
+            {
+              "title": "Eskalations-Runbook",
+              "url": "/docs/eskalation-runbook.pdf",
+              "type": "document"
+            }
+          ]
+        },
+        {
+          "id": "o12",
+          "code": "K4-3",
+          "abbr": "O12",
+          "name": "O12 Access Management",
+          "order": 12,
+          "is_visible": true,
+          "description": "Verwaltung von Benutzerzugriffen und Berechtigungen",
+          "links": [
+            {
+              "title": "Identity Management",
+              "url": "https://identity.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Access Request",
+              "url": "https://access.so.ch/request",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o13",
+          "code": "K4-7",
+          "abbr": "O13",
+          "name": "O13 Operation Control",
+          "order": 13,
+          "is_visible": true,
+          "description": "Überwachung und Steuerung des operativen IT-Betriebs",
+          "links": [
+            {
+              "title": "Operations Center",
+              "url": "https://noc.so.ch",
+              "type": "internal"
+            }
+          ]
+        },
+        {
+          "id": "o14",
+          "code": "K4-9",
+          "abbr": "O14",
+          "name": "O14 Technical Management",
+          "order": 14,
+          "is_visible": true,
+          "description": "Technisches Management und Support für IT-Infrastrukturen",
+          "links": [
+            {
+              "title": "Tech-Portal",
+              "url": "https://tech.so.ch",
+              "type": "internal"
+            },
+            {
+              "title": "Infra-Dokumentation",
+              "url": "/docs/infrastructure/",
+              "type": "document"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stakeholders": [
+    {
+      "id": "provider",
+      "label": "Leistungserbringer (inkl. externe Partner)",
+      "side": "right",
+      "color": "#ffe9c7",
+      "labelColor": "#9a3412",
+      "description": "Externe Partner und Dienstleister, die IT-Services und Infrastruktur für das AIO bereitstellen",
+      "links": [
+        {
+          "title": "Partner Portal",
+          "url": "https://partner.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Lieferantenverträge",
+          "url": "/docs/supplier-contracts.pdf",
+          "type": "document"
+        },
+        {
+          "title": "SLA Übersicht Partner",
+          "url": "https://sla.so.ch/partner",
+          "type": "internal"
+        }
+      ],
+      "partners": [
+        "Microsoft 365 / Azure",
+        "Swisscom",
+        "Sunrise",
+        "AWS",
+        "SAP"
+      ],
+      "bullets": [
+        "Interne IT-Teams & externe Dienstleister",
+        "Betrieb/Entwicklung gemäss SLA/OLA",
+        "Sicherheit & Compliance gewährleisten"
+      ]
+    },
+    {
+      "id": "kunden",
+      "label": "Leistungsbezüger (Amtsstellen des Kantons)",
+      "side": "left",
+      "color": "#d1f3e0",
+      "labelColor": "#065f46",
+      "description": "Amtsstellen, Direktionen und Organisationseinheiten des Kantons, die IT-Services vom AIO beziehen",
+      "links": [
+        {
+          "title": "Kunden Portal",
+          "url": "https://kunden.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Service Bestellung",
+          "url": "https://services.so.ch/order",
+          "type": "internal"
+        },
+        {
+          "title": "Kundenfeedback Portal",
+          "url": "https://feedback.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "SLA Vereinbarungen",
+          "url": "/docs/sla-amtsstellen.pdf",
+          "type": "document"
+        }
+      ],
+      "partners": [
+        "Direktionen",
+        "Ämter",
+        "Schulen",
+        "Projektorganisationen"
+      ],
+      "bullets": [
+        "Anforderungen & Priorisierung (Demand)",
+        "Abnahme, Feedback und Nutzung",
+        "Mitwirkung im KVP / Gremien"
+      ]
+    }
+  ],
+  "outer": [
+    {
+      "id": "lead",
+      "label": "AIO-Amtsleitung",
+      "color": "#ef4444",
+      "labelColor": "#b91c1c",
+      "description": "Operative und strategische Führung des AIO mit Verantwortung für Zielerreichung und Ressourcenallokation",
+      "links": [
+        {
+          "title": "AIO Organigramm",
+          "url": "/docs/organigramm.pdf",
+          "type": "document"
+        },
+        {
+          "title": "Strategiedokument AIO",
+          "url": "/docs/aio-strategie-2024.pdf",
+          "type": "document"
+        },
+        {
+          "title": "Quartalsbericht Portal",
+          "url": "https://berichte.so.ch/aio",
+          "type": "internal"
+        }
+      ],
+      "bullets": [
+        "Leitplanken & Zielbilder",
+        "Portfolio-Freigaben",
+        "Eskalationsentscheide",
+        "Quartalsreviews (KPI/Risiken)"
+      ]
+    },
+    {
+      "id": "dept",
+      "label": "Strategie / Finanzdepartement",
+      "color": "#3b82f6",
+      "labelColor": "#1d4ed8",
+      "description": "Übergeordnete strategische Führung, Budgetverantwortung und Koordination kantonaler IT-Programme",
+      "links": [
+        {
+          "title": "Digitalisierungsstrategie Kanton",
+          "url": "/docs/digitalisierungsstrategie.pdf",
+          "type": "document"
+        },
+        {
+          "title": "IT-Governance Rahmen",
+          "url": "https://governance.so.ch",
+          "type": "internal"
+        },
+        {
+          "title": "Budget Portal",
+          "url": "https://budget.so.ch/it",
+          "type": "internal"
+        },
+        {
+          "title": "Regierungsrat Berichte",
+          "url": "https://rr.so.ch/berichte/it",
+          "type": "internal"
+        }
+      ],
+      "bullets": [
+        "Übergeordnete Strategie & Governance",
+        "Budget/Controlling/Voranschlag",
+        "Programmkoordination",
+        "Berichtswesen an Gremien"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "incident-problem-flow",
+      "name": "Incident-Problem-Management",
+      "processes": [
+        "b03",
+        "b02",
+        "b01"
+      ],
+      "description": "Workflow von Incident Management zu Problem Management zu Service Request Management"
+    },
+    {
+      "id": "development-deployment",
+      "name": "Development & Deployment",
+      "processes": [
+        "e01",
+        "e02",
+        "b04"
+      ],
+      "description": "Von Application Development über Integration zu Release Management"
+    },
+    {
+      "id": "infrastructure-monitoring",
+      "name": "Infrastructure & Monitoring",
+      "processes": [
+        "i01",
+        "i02",
+        "b03"
+      ],
+      "description": "Infrastructure Management mit Monitoring und Incident Response"
+    },
+    {
+      "id": "connection-g02",
+      "name": "Verbindungen für G02",
+      "processes": [
+        "g02",
+        "o01",
+        "g03",
+        "s01",
+        "s02",
+        "k01",
+        "k02",
+        "k03",
+        "b05",
+        "u03",
+        "u04",
+        "b07",
+        "o13",
+        "k04",
+        "u09",
+        "g01",
+        "o02",
+        "o14"
+      ],
+      "description": "Automatisch erstellt für Prozess G02"
+    }
+  ]
+}

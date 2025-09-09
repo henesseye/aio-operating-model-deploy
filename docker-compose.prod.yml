@@ -1,0 +1,25 @@
+# Production Docker Compose - nutzt Images von Docker Hub
+# Verwendung: docker-compose -f docker-compose.prod.yml up -d
+
+services:
+  api:
+    image: henesseye/aio-operating-model-api:latest
+    restart: always
+    environment:
+      JWT_SECRET: ${JWT_SECRET:-changeme-jwt-secret}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Admin123!}
+      DATA_PATH: /data/model.json
+      USERS_PATH: /data/users.json
+      PORT: 3000
+    volumes:
+      - ./data:/data
+    expose:
+      - "3000"
+
+  web:
+    image: henesseye/aio-operating-model-web:latest
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - "${PUBLIC_PORT:-80}:80"
