@@ -64,7 +64,7 @@
           "code": "K3-7",
           "abbr": "G03",
           "name": "G03 Qualitätsgremium (QG3)",
-          "description": "Qualitätssicherung und -überwachung aller IT-Services durch regelmäßige Reviews und Audits",
+          "description": "Qualitätssicherung und -überwachung aller IT-Services durch regelmässige Reviews und Audits",
           "links": [
             {
               "title": "QM-Handbuch",
@@ -78,7 +78,8 @@
             }
           ],
           "order": 3,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "governance"
         },
         {
           "id": "g04",
@@ -426,7 +427,8 @@
               "url": "https://booking.so.ch/meetings",
               "type": "internal"
             }
-          ]
+          ],
+          "segmentKey": "kunden"
         },
         {
           "id": "k03",
@@ -1181,37 +1183,13 @@
       "name": "Verbindungen für G03",
       "processes": [
         "g03",
-        "o01",
-        "s01",
-        "s02",
-        "k01",
-        "k02",
-        "k03",
-        "b05",
-        "u03",
-        "u04",
-        "b07",
-        "o13",
-        "k04",
-        "u09",
         "g01",
-        "o02",
-        "o14",
-        "g02"
-      ],
-      "description": "Automatisch erstellt für Prozess G03"
-    },
-    {
-      "id": "connection-g04",
-      "name": "Verbindungen für G04",
-      "processes": [
+        "g02",
         "g04",
         "g05",
-        "g06",
-        "g03",
-        "g02"
+        "g06"
       ],
-      "description": "Automatisch erstellt für Prozess G04"
+      "description": "Reduzierte Verbindungen für G03 (nur Governance-Prozesse)"
     }
   ]
 }
