@@ -26,7 +26,7 @@
           "code": "M1-1",
           "abbr": "G01",
           "name": "G01 Service Strategy Management",
-          "description": "Strategische Planung und Management der IT-Services zur Unterstützung der Geschäftsziele",
+          "description": "Strategische Planung und Management der IT-Services zur Unterstützung der Geschäftsziele.",
           "links": [
             {
               "title": "Service Strategy Dokumentation",
@@ -127,7 +127,7 @@
           "code": "U2-5",
           "abbr": "G06",
           "name": "G06 Prozessaufnahme & Publikation",
-          "description": "Dokumentation und Veröffentlichung von Prozessbeschreibungen im Prozessportal",
+          "description": "Dokumentation und Veröffentlichung von Prozessbeschreibungen im Prozessportal.",
           "links": [
             {
               "title": "Prozessportal",
@@ -141,7 +141,8 @@
             }
           ],
           "order": 6,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "governance"
         }
       ]
     },
@@ -170,7 +171,7 @@
           "code": "U3-1",
           "abbr": "U01",
           "name": "U01 Budget MLP/IR",
-          "description": "Budgetplanung und -überwachung für Mehrjahresleistungsplanung und Informatikressourcen",
+          "description": "Budgetplanung und -überwachung für Mehrjahresleistungsplanung und Informatikressourcen.",
           "links": [
             {
               "title": "MLP-Richtlinien",
@@ -184,7 +185,8 @@
             }
           ],
           "order": 1,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "zentrale"
         },
         {
           "id": "u02",
@@ -226,14 +228,15 @@
             }
           ],
           "order": 3,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "zentrale"
         },
         {
           "id": "u04",
           "code": "U3-4",
           "abbr": "U04",
           "name": "U04 Kosten-/Leistungsrechnung",
-          "description": "Erfassung, Zuordnung und Auswertung von Kosten und Leistungen für Transparenz und Steuerung",
+          "description": "Erfassung, Zuordnung und Auswertung von Kosten und Leistungen für Transparenz und Steuerung.",
           "links": [
             {
               "title": "KLR-Handbuch",
@@ -247,7 +250,8 @@
             }
           ],
           "order": 4,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "zentrale"
         },
         {
           "id": "u05",
@@ -296,7 +300,7 @@
           "code": "U3-7",
           "abbr": "U07",
           "name": "U07 Nachkontrolle Wirtschaftlichkeit",
-          "description": "Post-Implementierung Kontrolle und Bewertung der tatsächlichen vs. geplanten Wirtschaftlichkeit",
+          "description": "Post-Implementierung Kontrolle und Bewertung der tatsächlichen vs. geplanten Wirtschaftlichkeit.",
           "links": [
             {
               "title": "Nachkontrolle-Prozess",
@@ -305,7 +309,8 @@
             }
           ],
           "order": 7,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "zentrale"
         },
         {
           "id": "u08",
@@ -1109,7 +1114,7 @@
       "label": "Strategie / Finanzdepartement",
       "color": "#3b82f6",
       "labelColor": "#1d4ed8",
-      "description": "Übergeordnete strategische Führung, Budgetverantwortung und Koordination kantonaler IT-Programme",
+      "description": "Übergeordnete strategische Führung, Budgetverantwortung und Koordination kantonaler IT-Programme.",
       "links": [
         {
           "title": "Digitalisierungsstrategie Kanton",
@@ -1172,12 +1177,11 @@
       "description": "Infrastructure Management mit Monitoring und Incident Response"
     },
     {
-      "id": "connection-g02",
-      "name": "Verbindungen für G02",
+      "id": "connection-g03",
+      "name": "Verbindungen für G03",
       "processes": [
-        "g02",
-        "o01",
         "g03",
+        "o01",
         "s01",
         "s02",
         "k01",
@@ -1192,9 +1196,22 @@
         "u09",
         "g01",
         "o02",
-        "o14"
+        "o14",
+        "g02"
       ],
-      "description": "Automatisch erstellt für Prozess G02"
+      "description": "Automatisch erstellt für Prozess G03"
+    },
+    {
+      "id": "connection-g04",
+      "name": "Verbindungen für G04",
+      "processes": [
+        "g04",
+        "g05",
+        "g06",
+        "g03",
+        "g02"
+      ],
+      "description": "Automatisch erstellt für Prozess G04"
     }
   ]
 }
