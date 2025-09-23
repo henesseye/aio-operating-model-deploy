@@ -1190,6 +1190,15 @@
         "g06"
       ],
       "description": "Reduzierte Verbindungen für G03 (nur Governance-Prozesse)"
+    },
+    {
+      "id": "connection-o08",
+      "name": "Verbindungen für O08",
+      "processes": [
+        "o08",
+        "g02"
+      ],
+      "description": "Automatisch erstellt für Prozess O08"
     }
   ]
 }
