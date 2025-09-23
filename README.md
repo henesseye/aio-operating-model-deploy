@@ -1,6 +1,6 @@
 # 🚀 AIO Operating Model - Production Deployment
 
-**Version: 1.0.2**
+**Version: 1.0.3**
 
 ## Quick Start
 
@@ -14,8 +14,8 @@ docker-compose -f docker-compose.prod.yml up -d
 
 ## Images auf Docker Hub
 
-- `henesseye/aio-operating-model-api:1.0.2`
-- `henesseye/aio-operating-model-web:1.0.2`
+- `henesseye/aio-operating-model-api:1.0.3`
+- `henesseye/aio-operating-model-web:1.0.3`
 - `henesseye/aio-operating-model-api:latest`
 - `henesseye/aio-operating-model-web:latest`
 
@@ -27,4 +27,4 @@ docker-compose -f docker-compose.prod.yml pull
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-Letzte Aktualisierung: Di 23 Sep 2025 09:09:08 CEST
+Letzte Aktualisierung: Di 23 Sep 2025 09:22:11 CEST
