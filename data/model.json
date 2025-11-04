@@ -20,6 +20,41 @@
           "type": "document"
         }
       ],
+      "services": [
+        {
+          "id": "gs01",
+          "code": "GS-1",
+          "abbr": "GS01",
+          "name": "GS01 Governance & Strategy Service",
+          "description": "IT-Governance Framework und strategische Ausrichtung der IT-Services",
+          "links": [],
+          "order": 1,
+          "is_visible": true,
+          "segmentKey": "governance"
+        },
+        {
+          "id": "gs02",
+          "code": "GS-2",
+          "abbr": "GS02",
+          "name": "GS02 Risk Management Service",
+          "description": "Kontinuierliches Risikomanagement und Compliance-Überwachung",
+          "links": [],
+          "order": 2,
+          "is_visible": true,
+          "segmentKey": "governance"
+        },
+        {
+          "id": "gs03",
+          "code": "GS-3",
+          "abbr": "GS03",
+          "name": "GS03 Quality Assurance Service",
+          "description": "Qualitätssicherung und Audit-Services für IT-Prozesse",
+          "links": [],
+          "order": 3,
+          "is_visible": true,
+          "segmentKey": "governance"
+        }
+      ],
       "processes": [
         {
           "id": "g01",
@@ -164,6 +199,41 @@
           "title": "SLA Dokumentation",
           "url": "/docs/sla-zentrale-dienste.pdf",
           "type": "document"
+        }
+      ],
+      "services": [
+        {
+          "id": "zs01",
+          "code": "ZS-1",
+          "abbr": "ZS01",
+          "name": "ZS01 Finanzmanagement-Service",
+          "description": "Budget- und Finanzplanungsservices für IT-Projekte und -Betrieb",
+          "links": [],
+          "order": 1,
+          "is_visible": true,
+          "segmentKey": "zentrale"
+        },
+        {
+          "id": "zs02",
+          "code": "ZS-2",
+          "abbr": "ZS02",
+          "name": "ZS02 HR & Personalentwicklung",
+          "description": "Personalmanagement und Weiterbildungsservices für IT-Mitarbeiter",
+          "links": [],
+          "order": 2,
+          "is_visible": true,
+          "segmentKey": "zentrale"
+        },
+        {
+          "id": "zs03",
+          "code": "ZS-3",
+          "abbr": "ZS03",
+          "name": "ZS03 Facility Management Service",
+          "description": "Arbeitsplatz- und Infrastruktur-Services",
+          "links": [],
+          "order": 3,
+          "is_visible": true,
+          "segmentKey": "zentrale"
         }
       ],
       "processes": [
@@ -386,6 +456,64 @@
           "type": "document"
         }
       ],
+      "services": [
+        {
+          "id": "ks01",
+          "code": "KS-1",
+          "abbr": "KS01",
+          "name": "KS01 Projektmanagement-Service",
+          "description": "Umfassende Projektmanagement-Dienstleistungen für IT-Projekte aller Größenordnungen",
+          "links": [
+            {
+              "title": "PM-Service Portal",
+              "url": "https://pm-service.so.ch",
+              "type": "internal"
+            }
+          ],
+          "order": 1,
+          "is_visible": true,
+          "segmentKey": "kunden"
+        },
+        {
+          "id": "ks02",
+          "code": "KS-2",
+          "abbr": "KS02",
+          "name": "KS02 Kundenberatungs-Service",
+          "description": "Beratungsleistungen für IT-Strategien und Lösungsdesign",
+          "links": [
+            {
+              "title": "Beratungs-Service",
+              "url": "https://beratung.so.ch",
+              "type": "internal"
+            }
+          ],
+          "order": 2,
+          "is_visible": true,
+          "segmentKey": "kunden"
+        },
+        {
+          "id": "ks03",
+          "code": "KS-3",
+          "abbr": "KS03",
+          "name": "KS03 Requirements Engineering Service",
+          "description": "Professionelle Anforderungsanalyse und Spezifikationserstellung",
+          "links": [],
+          "order": 3,
+          "is_visible": true,
+          "segmentKey": "kunden"
+        },
+        {
+          "id": "ks04",
+          "code": "KS-4",
+          "abbr": "KS04",
+          "name": "KS04 Change Management Service",
+          "description": "Unterstützung bei organisatorischen Veränderungen und IT-Transformationen",
+          "links": [],
+          "order": 4,
+          "is_visible": true,
+          "segmentKey": "kunden"
+        }
+      ],
       "processes": [
         {
           "id": "k01",
@@ -583,6 +711,41 @@
           "type": "document"
         }
       ],
+      "services": [
+        {
+          "id": "bs01",
+          "code": "BS-1",
+          "abbr": "BS01",
+          "name": "BS01 Application Management Service",
+          "description": "Betrieb und Wartung fachspezifischer Business-Applikationen",
+          "links": [],
+          "order": 1,
+          "is_visible": true,
+          "segmentKey": "bits"
+        },
+        {
+          "id": "bs02",
+          "code": "BS-2",
+          "abbr": "BS02",
+          "name": "BS02 Integration Service",
+          "description": "Integration und Datenaustausch zwischen Business-Systemen",
+          "links": [],
+          "order": 2,
+          "is_visible": true,
+          "segmentKey": "bits"
+        },
+        {
+          "id": "bs03",
+          "code": "BS-3",
+          "abbr": "BS03",
+          "name": "BS03 Testing & Quality Service",
+          "description": "Test-Management und Qualitätssicherung für Business-Applikationen",
+          "links": [],
+          "order": 3,
+          "is_visible": true,
+          "segmentKey": "bits"
+        }
+      ],
       "processes": [
         {
           "id": "b01",
@@ -735,6 +898,52 @@
           "title": "Disaster Recovery Plan",
           "url": "/docs/disaster-recovery.pdf",
           "type": "document"
+        }
+      ],
+      "services": [
+        {
+          "id": "os01",
+          "code": "OS-1",
+          "abbr": "OS01",
+          "name": "OS01 Infrastructure Service",
+          "description": "Bereitstellung und Betrieb der IT-Infrastruktur (Server, Storage, Network)",
+          "links": [],
+          "order": 1,
+          "is_visible": true,
+          "segmentKey": "ops"
+        },
+        {
+          "id": "os02",
+          "code": "OS-2",
+          "abbr": "OS02",
+          "name": "OS02 Service Desk",
+          "description": "Zentrale Anlaufstelle für alle IT-Anfragen und Störungsmeldungen",
+          "links": [],
+          "order": 2,
+          "is_visible": true,
+          "segmentKey": "ops"
+        },
+        {
+          "id": "os03",
+          "code": "OS-3",
+          "abbr": "OS03",
+          "name": "OS03 Monitoring & Support Service",
+          "description": "24/7 Überwachung und Support für kritische IT-Systeme",
+          "links": [],
+          "order": 3,
+          "is_visible": true,
+          "segmentKey": "ops"
+        },
+        {
+          "id": "os04",
+          "code": "OS-4",
+          "abbr": "OS04",
+          "name": "OS04 Backup & Recovery Service",
+          "description": "Datensicherung und Wiederherstellungsservices",
+          "links": [],
+          "order": 4,
+          "is_visible": true,
+          "segmentKey": "ops"
         }
       ],
       "processes": [
@@ -1151,8 +1360,8 @@
     {
       "id": "incident-problem-flow",
       "name": "Incident-Problem-Management",
-      "processes": [
-        "b03",
+      "source": "b03",
+      "targets": [
         "b02",
         "b01"
       ],
@@ -1161,8 +1370,8 @@
     {
       "id": "development-deployment",
       "name": "Development & Deployment",
-      "processes": [
-        "e01",
+      "source": "e01",
+      "targets": [
         "e02",
         "b04"
       ],
@@ -1171,8 +1380,8 @@
     {
       "id": "infrastructure-monitoring",
       "name": "Infrastructure & Monitoring",
-      "processes": [
-        "i01",
+      "source": "i01",
+      "targets": [
         "i02",
         "b03"
       ],
@@ -1181,8 +1390,8 @@
     {
       "id": "connection-g03",
       "name": "Verbindungen für G03",
-      "processes": [
-        "g03",
+      "source": "g03",
+      "targets": [
         "g01",
         "g02",
         "g04",
@@ -1194,11 +1403,41 @@
     {
       "id": "connection-o08",
       "name": "Verbindungen für O08",
-      "processes": [
-        "o08",
+      "source": "o08",
+      "targets": [
         "g02"
       ],
       "description": "Automatisch erstellt für Prozess O08"
+    },
+    {
+      "id": "connection-k06",
+      "name": "Verbindungen für K06",
+      "source": "k06",
+      "targets": [
+        "k01"
+      ],
+      "description": "Automatisch erstellt für Prozess K06"
+    }
+  ],
+  "serviceConnections": [
+    {
+      "id": "connection-ks01",
+      "name": "Verbindungen für KS01",
+      "source": "ks01",
+      "targets": [
+        "gs02",
+        "ks03"
+      ],
+      "description": "Direkte Verbindungen von KS01"
+    },
+    {
+      "id": "connection-ks02",
+      "name": "Verbindungen für KS02",
+      "source": "ks02",
+      "targets": [
+        "os01"
+      ],
+      "description": "Direkte Verbindungen von KS02"
     }
   ]
 }
