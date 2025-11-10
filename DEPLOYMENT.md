@@ -53,7 +53,7 @@
 
 ```bash
 # Aktuelle Version (siehe https://hub.docker.com/r/henesseye/aio-operating-model-api/tags)
-VERSION=1.0.4
+VERSION=1.0.5
 
 # Images von Docker Hub pullen
 docker pull henesseye/aio-operating-model-api:${VERSION}
@@ -99,7 +99,7 @@ docker pull ${INTERNAL_REGISTRY}/${INTERNAL_PATH}/aio-operating-model-api:${VERS
 
 ```bash
 # In Ihrer .env Datei (siehe env.example)
-VERSION=1.0.4
+VERSION=1.0.5
 DOCKER_REGISTRY=docker-registry.internal.company.com:5000/aio/
 JWT_SECRET=IhrSicheresJWTSecret...
 ADMIN_PASSWORD=IhrSicheresPasswort...
@@ -124,8 +124,8 @@ PUBLIC_PORT=80
 4. Diese `DEPLOYMENT.md` - Komplette Deployment-Anleitung
 
 **Docker Images auf Docker Hub (für Transfer ins interne Repo):**
-- `henesseye/aio-operating-model-api:1.0.4` (aktuelle Version)
-- `henesseye/aio-operating-model-web:1.0.4` (aktuelle Version)
+- `henesseye/aio-operating-model-api:1.0.5` (aktuelle Version)
+- `henesseye/aio-operating-model-web:1.0.5` (aktuelle Version)
 - Siehe alle Versionen: https://hub.docker.com/r/henesseye/aio-operating-model-api/tags
 
 **⚠️ KEINE `latest` Tags verwenden!** Nur spezifische Versionen.
@@ -154,7 +154,7 @@ cd aio-operating-model
 # .env Datei erstellen (siehe env.example für Details)
 cat > .env << EOF
 # Version (ERFORDERLICH - keine latest Tags!)
-VERSION=1.0.4
+VERSION=1.0.5
 
 # Internes Registry (mit trailing slash!)
 DOCKER_REGISTRY=docker-registry.internal.company.com:5000/aio/
@@ -189,7 +189,7 @@ docker-compose -f docker-compose.prod.yml config
 **Option B: Direkt von Docker Hub (nur für Testing)**
 ```bash
 # In .env: DOCKER_REGISTRY leer lassen oder auskommentieren
-# VERSION=1.0.4 setzen
+# VERSION=1.0.5 setzen
 
 docker-compose -f docker-compose.prod.yml pull
 ```
@@ -242,13 +242,13 @@ services:
 **Sie müssen nur .env anpassen:**
 ```bash
 # .env
-VERSION=1.0.4  # Aktuelle stabile Version
+VERSION=1.0.5  # Aktuelle stabile Version
 DOCKER_REGISTRY=registry.internal:5000/aio/
 ```
 
 **Verfügbare Versionen:**
 - Siehe Docker Hub: https://hub.docker.com/r/henesseye/aio-operating-model-api/tags
-- Aktuelle Version: `1.0.4`
+- Aktuelle Version: `1.0.5`
 - ⚠️ **NIEMALS `latest` in Production verwenden!**
 
 ### 🔄 Updates auf neue Version
@@ -294,7 +294,7 @@ docker-compose -f docker-compose.prod.yml logs -f
 **4. Bei Problemen: Rollback**
 ```bash
 # .env auf alte Version zurücksetzen
-VERSION=1.0.4
+VERSION=1.0.5
 
 # Alte Version deployen
 docker-compose -f docker-compose.prod.yml up -d
@@ -416,7 +416,7 @@ docker-compose -f docker-compose.prod.yml logs web
 
 #### Vor dem Deployment:
 - [ ] **Images ins interne Repository transferiert** (siehe "Image Transfer" Sektion)
-  - [ ] Spezifische Version von Docker Hub gepullt (z.B. 1.0.4)
+  - [ ] Spezifische Version von Docker Hub gepullt (z.B. 1.0.5)
   - [ ] Images für internes Registry getaggt
   - [ ] Images ins interne Registry gepusht
   - [ ] Pull-Test vom internen Registry erfolgreich
@@ -429,7 +429,7 @@ docker-compose -f docker-compose.prod.yml logs web
 
 #### Konfiguration:
 - [ ] `.env` erstellt (aus env.example kopiert)
-- [ ] `VERSION` in .env gesetzt (z.B. `VERSION=1.0.4`) - **KEINE latest Tags!**
+- [ ] `VERSION` in .env gesetzt (z.B. `VERSION=1.0.5`) - **KEINE latest Tags!**
 - [ ] `DOCKER_REGISTRY` in .env konfiguriert (mit trailing `/`)
 - [ ] `JWT_SECRET` geändert (min. 32 Zeichen, zufällig)
 - [ ] `ADMIN_PASSWORD` geändert (sicher und eindeutig)
