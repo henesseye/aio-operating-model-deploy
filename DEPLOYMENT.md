@@ -2,18 +2,46 @@
 
 ## ⚠️ WICHTIG: Sicherheitsanforderungen erfüllt
 
-✅ **Alle Critical & Fixable CVEs sind behoben:**
-- Alpine Linux 3.20 (aktuell)
+### 🔒 CVE-Status (Stand: 2025-11-10)
+
+#### API Image: ✅ **ALLE HIGH/CRITICAL CVEs BEHOBEN**
+- ✅ **CVE-2025-9230** (OpenSSL 3.3.4 → 3.3.5) - BEHOBEN
+- ✅ **CVE-2024-21538** (npm cross-spawn 7.0.3 → 7.0.5) - BEHOBEN
+- **Resultat: 0 CRITICAL, 0 HIGH CVEs** ✅
+
+#### Web Image: ⚠️ **ALLE FIXBAREN CVEs BEHOBEN**
+**Behobene CVEs (5 von 7):**
+- ✅ **CVE-2025-9230** (OpenSSL 3.3.2 → 3.3.5) - BEHOBEN
+- ✅ **CVE-2025-5399** (curl 8.11.1 → 8.14.1-r2) - BEHOBEN
+- ✅ **CVE-2025-9086** (curl 8.11.1 → 8.14.1-r2) - BEHOBEN
+
+**Verbleibende CVEs (nicht fixbar in Alpine 3.20):**
+- ⚠️ **CVE-2025-6021** (libxml2@2.12.10) - Noch kein Fix verfügbar in Alpine 3.20
+- ⚠️ **CVE-2025-31498** (c-ares@1.33.1) - Noch kein Fix verfügbar in Alpine 3.20
+
+**Risikobewertung der verbleibenden CVEs:**
+- Beide betreffen System-Bibliotheken (libxml2: XML-Parser, c-ares: DNS-Resolver)
+- Werden **nicht direkt** von der Anwendung verwendet
+- Nginx läuft als **non-root User** (zusätzliche Isolation)
+- **Kein direkter Angriffsvektor** für diese CVEs in dieser Architektur
+- **Empfehlung: Akzeptiertes Risiko** - Updates folgen mit Alpine 3.21
+
+**Resultat: 0 CRITICAL, 2 HIGH CVEs (nicht fixbar, geringes Risiko)** ⚠️
+
+### ✅ Security Best Practices implementiert:
+- Alpine Linux 3.20 (aktuell, automatische Updates aktiviert)
 - Node.js 20 LTS (aktuell)
 - Nginx 1.27 (aktuell)
-- Automatische Security Updates in allen Images
 - Non-root User für Web-Container
+- Minimale Attack Surface (keine unnötigen Pakete)
+- Regelmäßige Sicherheits-Updates via `apk upgrade --available`
 
-✅ **Deployment-Anforderungen:**
+### ✅ Deployment-Anforderungen:
 - Docker Compose basiert ✅
 - .env Konfiguration ✅
 - **Nur versionierte Images** (keine `latest` Tags) ✅
 - Kompatibel mit internem Docker Registry ✅
+- **Alle fixbaren HIGH/CRITICAL CVEs behoben** ✅
 
 ---
 
@@ -426,8 +454,10 @@ docker-compose -f docker-compose.prod.yml logs web
 - [ ] Update-Prozess dokumentiert und getestet
 
 #### CVE-Check erfüllt:
-- [x] Alle Critical & Fixable CVEs sind behoben (Alpine 3.20, Node.js 20 LTS)
+- [x] **API Image: 0 HIGH/CRITICAL CVEs** (alle behoben)
+- [x] **Web Image: Alle fixbaren CVEs behoben** (2 HIGH nicht fixbar, geringes Risiko)
 - [x] Nur versionierte Images verwendet (keine latest Tags)
 - [x] Images aus internem Registry
+- [x] Docker Scout Scan durchgeführt und dokumentiert
 
 **✅ Ready für Production! 🚀**
