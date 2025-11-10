@@ -3,3 +3,6 @@ data/users.json
 
 # Environment files
 .env
+
+# macOS system files
+.DS_Store
