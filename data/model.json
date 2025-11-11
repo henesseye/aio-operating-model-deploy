@@ -438,7 +438,7 @@
       "label": "Kundenberatung & Projekte",
       "color": "#c6b6d9",
       "order": 3,
-      "description": "Beratung, Projektmanagement und maßgeschneiderte IT-Lösungen für Amtsstellen und Fachbereiche",
+      "description": "Beratung, Projektmanagement und massgeschneiderte IT-Lösungen für Amtsstellen und Fachbereiche",
       "links": [
         {
           "title": "Projektportal",
@@ -462,7 +462,7 @@
           "code": "KS-1",
           "abbr": "KS01",
           "name": "KS01 Projektmanagement-Service",
-          "description": "Umfassende Projektmanagement-Dienstleistungen für IT-Projekte aller Größenordnungen",
+          "description": "Umfassende Projektmanagement-Dienstleistungen für IT-Projekte aller Grössenordnungen",
           "links": [
             {
               "title": "PM-Service Portal",
@@ -644,7 +644,7 @@
           "name": "K07 Ausbildungsmanagement",
           "order": 7,
           "is_visible": true,
-          "description": "Planung und Organisation von Weiterbildungsmaßnahmen für Mitarbeiter",
+          "description": "Planung und Organisation von Weiterbildungsmassnahmen für Mitarbeiter",
           "links": [
             {
               "title": "Schulungsplan",
