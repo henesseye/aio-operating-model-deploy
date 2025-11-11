@@ -21,8 +21,8 @@ Die verbleibenden CVEs betreffen System-Bibliotheken ohne direkten Angriffsvekto
 **CVE-Scan:**
 ```bash
 # Docker Scout CVE-Analyse
-docker scout cves henesseye/aio-operating-model-api:1.0.5
-docker scout cves henesseye/aio-operating-model-web:1.0.5
+docker scout cves henesseye/aio-operating-model-api:1.0.6
+docker scout cves henesseye/aio-operating-model-web:1.0.6
 ```
 
 ### Health Checks
@@ -50,7 +50,7 @@ docker inspect <container> --format='{{.State.Health.Status}}'
 
 Die Docker-Crew muss Images von Docker Hub ins interne Repository transferieren.
 
-**Aktuelle Version:** `1.0.5`
+**Aktuelle Version:** `1.0.6`
 **Docker Hub:** https://hub.docker.com/r/henesseye/aio-operating-model-api/tags
 
 ### Transfer-Prozess
