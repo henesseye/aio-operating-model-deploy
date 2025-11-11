@@ -57,7 +57,7 @@ Die Docker-Crew muss Images von Docker Hub ins interne Repository transferieren.
 
 ```bash
 # 1. Images von Docker Hub pullen
-VERSION=1.0.5
+VERSION=1.0.6
 docker pull henesseye/aio-operating-model-api:${VERSION}
 docker pull henesseye/aio-operating-model-web:${VERSION}
 
@@ -106,7 +106,7 @@ aio-operating-model/
 
 ```bash
 # Version (ERFORDERLICH - keine latest Tags!)
-VERSION=1.0.5
+VERSION=1.0.6
 
 # Internes Registry (mit trailing slash!)
 DOCKER_REGISTRY=docker-registry.internal.company.com:5000/aio/
@@ -159,11 +159,11 @@ docker-compose -f docker-compose.prod.yml logs -f
 
 ```bash
 # 1. Neue Version ins interne Registry transferieren
-NEW_VERSION=1.0.5
+NEW_VERSION=1.0.6
 # (Image Transfer wie oben beschrieben durchführen)
 
 # 2. .env aktualisieren
-VERSION=1.0.5
+VERSION=1.0.6
 
 # 3. Update deployen
 docker-compose -f docker-compose.prod.yml pull
@@ -178,7 +178,7 @@ docker-compose -f docker-compose.prod.yml logs -f
 
 ```bash
 # .env auf vorherige Version setzen
-VERSION=1.0.5
+VERSION=1.0.6
 
 # Alte Version deployen
 docker-compose -f docker-compose.prod.yml up -d
@@ -253,7 +253,7 @@ docker-compose -f docker-compose.prod.yml ps
 ## Deployment-Checkliste
 
 ### Image Transfer
-- [ ] Spezifische Version von Docker Hub gepullt (z.B. 1.0.5)
+- [ ] Spezifische Version von Docker Hub gepullt (z.B. 1.0.6)
 - [ ] Images für internes Registry getaggt
 - [ ] Images ins interne Registry gepusht
 - [ ] Pull-Test vom internen Registry erfolgreich

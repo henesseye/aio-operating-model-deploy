@@ -1421,16 +1421,6 @@
   ],
   "serviceConnections": [
     {
-      "id": "connection-ks01",
-      "name": "Verbindungen für KS01",
-      "source": "ks01",
-      "targets": [
-        "gs02",
-        "ks03"
-      ],
-      "description": "Direkte Verbindungen von KS01"
-    },
-    {
       "id": "connection-ks02",
       "name": "Verbindungen für KS02",
       "source": "ks02",
@@ -1438,6 +1428,43 @@
         "os01"
       ],
       "description": "Direkte Verbindungen von KS02"
+    },
+    {
+      "id": "connection-gs03",
+      "name": "Verbindungen für GS03",
+      "source": "gs03",
+      "targets": [
+        "ks01"
+      ],
+      "description": "Direkte Verbindungen von GS03"
+    },
+    {
+      "id": "connection-gs01",
+      "name": "Verbindungen für GS01",
+      "source": "gs01",
+      "targets": [
+        "zs01",
+        "ks01"
+      ],
+      "description": "Direkte Verbindungen von GS01"
+    },
+    {
+      "id": "connection-os01",
+      "name": "Verbindungen für OS01",
+      "source": "os01",
+      "targets": [
+        "bs02"
+      ],
+      "description": "Direkte Verbindungen von OS01"
+    },
+    {
+      "id": "connection-bs02",
+      "name": "Verbindungen für BS02",
+      "source": "bs02",
+      "targets": [
+        "zs01"
+      ],
+      "description": "Direkte Verbindungen von BS02"
     }
   ]
 }
