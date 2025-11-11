@@ -1,158 +1,110 @@
-# 🐳 Production Deployment - AIO Betriebsmodell
+# Production Deployment - AIO Betriebsmodell
 
-## ⚠️ WICHTIG: Sicherheitsanforderungen erfüllt
+## Sicherheitsstatus
 
-### 🔒 CVE-Status (Stand: 2025-11-10)
+### CVE-Status (Stand: 2025-11-11)
 
-#### API Image: ✅ **ALLE HIGH/CRITICAL CVEs BEHOBEN**
-- ✅ **CVE-2025-9230** (OpenSSL 3.3.4 → 3.3.5) - BEHOBEN
-- ✅ **CVE-2024-21538** (npm cross-spawn 7.0.3 → 7.0.5) - BEHOBEN
-- **Resultat: 0 CRITICAL, 0 HIGH CVEs** ✅
+**API Image:**
+- ✅ **0 CRITICAL, 0 HIGH CVEs**
+- CVE-2025-9230 (OpenSSL 3.3.5) - behoben
+- CVE-2024-21538 (npm cross-spawn 7.0.5) - behoben
 
-#### Web Image: ⚠️ **ALLE FIXBAREN CVEs BEHOBEN**
-**Behobene CVEs (5 von 7):**
-- ✅ **CVE-2025-9230** (OpenSSL 3.3.2 → 3.3.5) - BEHOBEN
-- ✅ **CVE-2025-5399** (curl 8.11.1 → 8.14.1-r2) - BEHOBEN
-- ✅ **CVE-2025-9086** (curl 8.11.1 → 8.14.1-r2) - BEHOBEN
+**Web Image:**
+- ⚠️ **0 CRITICAL, 2 HIGH CVEs (nicht fixbar)**
+- CVE-2025-9230 (OpenSSL 3.3.5) - behoben
+- CVE-2025-5399, CVE-2025-9086 (curl 8.14.1-r2) - behoben
+- CVE-2025-6021 (libxml2) - kein Fix in Alpine 3.20 verfügbar
+- CVE-2025-31498 (c-ares) - kein Fix in Alpine 3.20 verfügbar
 
-**Verbleibende CVEs (nicht fixbar in Alpine 3.20):**
-- ⚠️ **CVE-2025-6021** (libxml2@2.12.10) - Noch kein Fix verfügbar in Alpine 3.20
-- ⚠️ **CVE-2025-31498** (c-ares@1.33.1) - Noch kein Fix verfügbar in Alpine 3.20
+Die verbleibenden CVEs betreffen System-Bibliotheken ohne direkten Angriffsvektor in dieser Architektur. Web-Container läuft als non-root User.
 
-**Risikobewertung der verbleibenden CVEs:**
-- Beide betreffen System-Bibliotheken (libxml2: XML-Parser, c-ares: DNS-Resolver)
-- Werden **nicht direkt** von der Anwendung verwendet
-- Nginx läuft als **non-root User** (zusätzliche Isolation)
-- **Kein direkter Angriffsvektor** für diese CVEs in dieser Architektur
-- **Empfehlung: Akzeptiertes Risiko** - Updates folgen mit Alpine 3.21
+**CVE-Scan:**
+```bash
+# Docker Scout CVE-Analyse
+docker scout cves henesseye/aio-operating-model-api:1.0.5
+docker scout cves henesseye/aio-operating-model-web:1.0.5
+```
 
-**Resultat: 0 CRITICAL, 2 HIGH CVEs (nicht fixbar, geringes Risiko)** ⚠️
+### Health Checks
 
-### ✅ Security Best Practices implementiert:
-- Alpine Linux 3.20 (aktuell, automatische Updates aktiviert)
-- Node.js 20 LTS (aktuell)
-- Nginx 1.27 (aktuell)
-- Non-root User für Web-Container
-- Minimale Attack Surface (keine unnötigen Pakete)
-- Regelmäßige Sicherheits-Updates via `apk upgrade --available`
+Beide Images verfügen über integrierte Health Checks:
 
-### ✅ Deployment-Anforderungen:
-- Docker Compose basiert ✅
-- .env Konfiguration ✅
-- **Nur versionierte Images** (keine `latest` Tags) ✅
-- Kompatibel mit internem Docker Registry ✅
-- **Alle fixbaren HIGH/CRITICAL CVEs behoben** ✅
+**API Container:**
+- Endpoint: `http://localhost:3000/health`
+- Interval: 30s, Timeout: 10s, Retries: 3
+
+**Web Container:**
+- Endpoint: `http://localhost:8080/health`
+- Interval: 30s, Timeout: 10s, Retries: 3
+- Startet erst nach erfolgreicher API-Initialisierung
+
+Status-Überprüfung:
+```bash
+docker-compose ps                    # Status: healthy
+docker inspect <container> --format='{{.State.Health.Status}}'
+```
 
 ---
 
-## 🔄 Image Transfer ins interne Repository (ERFORDERLICH!)
+## Image Transfer ins interne Repository
 
-**Ihre Docker-Crew muss die Images ZUERST von Docker Hub ins interne Repository transferieren.**
+Die Docker-Crew muss Images von Docker Hub ins interne Repository transferieren.
 
-### Schritt 1: Images von Docker Hub pullen
+**Aktuelle Version:** `1.0.5`
+**Docker Hub:** https://hub.docker.com/r/henesseye/aio-operating-model-api/tags
+
+### Transfer-Prozess
 
 ```bash
-# Aktuelle Version (siehe https://hub.docker.com/r/henesseye/aio-operating-model-api/tags)
+# 1. Images von Docker Hub pullen
 VERSION=1.0.5
-
-# Images von Docker Hub pullen
 docker pull henesseye/aio-operating-model-api:${VERSION}
 docker pull henesseye/aio-operating-model-web:${VERSION}
 
-# Verify
-docker images | grep aio-operating-model
-```
-
-### Schritt 2: Images für internes Repository taggen
-
-```bash
-# Ersetzen Sie mit Ihrer internen Registry URL
+# 2. Für internes Repository taggen
 INTERNAL_REGISTRY="docker-registry.internal.company.com:5000"
-INTERNAL_PATH="aio"  # Optional: Pfad im Registry
+INTERNAL_PATH="aio"
 
-# API Image taggen
 docker tag henesseye/aio-operating-model-api:${VERSION} \
   ${INTERNAL_REGISTRY}/${INTERNAL_PATH}/aio-operating-model-api:${VERSION}
 
-# Web Image taggen
 docker tag henesseye/aio-operating-model-web:${VERSION} \
   ${INTERNAL_REGISTRY}/${INTERNAL_PATH}/aio-operating-model-web:${VERSION}
-```
 
-### Schritt 3: Images ins interne Repository pushen
-
-```bash
-# Falls erforderlich: Login
+# 3. Ins interne Repository pushen
 docker login ${INTERNAL_REGISTRY}
-
-# API Image pushen
 docker push ${INTERNAL_REGISTRY}/${INTERNAL_PATH}/aio-operating-model-api:${VERSION}
-
-# Web Image pushen
 docker push ${INTERNAL_REGISTRY}/${INTERNAL_PATH}/aio-operating-model-web:${VERSION}
 
-# Verify
+# 4. Verify
 docker pull ${INTERNAL_REGISTRY}/${INTERNAL_PATH}/aio-operating-model-api:${VERSION}
 ```
 
-### Schritt 4: .env für internes Repository konfigurieren
-
-```bash
-# In Ihrer .env Datei (siehe env.example)
-VERSION=1.0.5
-DOCKER_REGISTRY=docker-registry.internal.company.com:5000/aio/
-JWT_SECRET=IhrSicheresJWTSecret...
-ADMIN_PASSWORD=IhrSicheresPasswort...
-PUBLIC_PORT=80
-```
-
-**⚠️ WICHTIG:**
-- `DOCKER_REGISTRY` muss mit `/` enden!
-- `VERSION` darf NICHT `latest` sein!
-- Images müssen im Registry verfügbar sein BEVOR Sie deployen
-
 ---
 
-## Für die Docker-Crew
+## Deployment
 
-### 📦 Was Sie von mir erhalten
+### Vorbereitung
 
-**Dateien die Sie brauchen:**
-1. `docker-compose.prod.yml` - Production Docker Compose Configuration (versioniert, Registry-kompatibel)
-2. `env.example` - Beispiel-Konfiguration mit allen erforderlichen Variablen
-3. `data/model.json` - Vollständige Betriebsmodell-Daten mit allen 45+ Prozessen
-4. Diese `DEPLOYMENT.md` - Komplette Deployment-Anleitung
+**Benötigte Dateien:**
+- `docker-compose.prod.yml` - Production Compose-Konfiguration
+- `env.example` - Konfigurationsvorlage
+- `data/model.json` - Betriebsmodell-Daten
 
-**Docker Images auf Docker Hub (für Transfer ins interne Repo):**
-- `henesseye/aio-operating-model-api:1.0.5` (aktuelle Version)
-- `henesseye/aio-operating-model-web:1.0.5` (aktuelle Version)
-- Siehe alle Versionen: https://hub.docker.com/r/henesseye/aio-operating-model-api/tags
-
-**⚠️ KEINE `latest` Tags verwenden!** Nur spezifische Versionen.
-
-### 🚀 Deployment auf Ihrem Docker Host
-
-#### 1. **Dateien vorbereiten**
-```bash
-# Projekt-Verzeichnis erstellen
-mkdir aio-operating-model
-cd aio-operating-model
-
-# Dateien von mir erhalten:
-# - docker-compose.prod.yml
-# - data/model.json (in data/ Unterordner)
-
-# Verzeichnisstruktur sollte so aussehen:
-# ./
-# ├── docker-compose.prod.yml
-# └── data/
-#     └── model.json
+**Verzeichnisstruktur:**
+```
+aio-operating-model/
+├── docker-compose.prod.yml
+├── .env
+└── data/
+    └── model.json
 ```
 
-#### 2. **Environment konfigurieren**
+### Konfiguration
+
+`.env` Datei erstellen und anpassen:
+
 ```bash
-# .env Datei erstellen (siehe env.example für Details)
-cat > .env << EOF
 # Version (ERFORDERLICH - keine latest Tags!)
 VERSION=1.0.5
 
@@ -160,304 +112,184 @@ VERSION=1.0.5
 DOCKER_REGISTRY=docker-registry.internal.company.com:5000/aio/
 
 # Sicherheit (MUSS geändert werden!)
-JWT_SECRET=IhrSicheresJWTSecret2024Mindestens32ZeichenLang!
-ADMIN_PASSWORD=IhrSuperSicheresAdminPasswort2024!
+JWT_SECRET=<mindestens-32-zeichen-zufälliger-string>
+ADMIN_PASSWORD=<sicheres-passwort>
 
 # Netzwerk
 PUBLIC_PORT=80
-EOF
-
-# ODER verwenden Sie env.example als Vorlage:
-cp env.example .env
-# Dann .env bearbeiten und anpassen
 ```
 
-#### 3. **Images bereitstellen**
+**Wichtig:**
+- `VERSION` darf nicht `latest` sein
+- `DOCKER_REGISTRY` muss mit `/` enden
+- `JWT_SECRET` mindestens 32 Zeichen
+- Images müssen im Registry verfügbar sein vor dem Deployment
 
-**Option A: Aus internem Repository (EMPFOHLEN)**
+### Deployment-Prozess
+
 ```bash
-# .env muss VERSION und DOCKER_REGISTRY enthalten!
-# Siehe "Image Transfer" Sektion oben
-
-# Images vom internen Registry pullen
+# 1. Images vom internen Registry pullen
 docker-compose -f docker-compose.prod.yml pull
 
-# Verify
+# 2. Konfiguration prüfen
 docker-compose -f docker-compose.prod.yml config
-```
 
-**Option B: Direkt von Docker Hub (nur für Testing)**
-```bash
-# In .env: DOCKER_REGISTRY leer lassen oder auskommentieren
-# VERSION=1.0.5 setzen
-
-docker-compose -f docker-compose.prod.yml pull
-```
-
-#### 4. **Deployen**
-```bash
-# Starten im Daemon-Modus
+# 3. Services starten
 docker-compose -f docker-compose.prod.yml up -d
 
-# Status prüfen
+# 4. Status prüfen
 docker-compose -f docker-compose.prod.yml ps
-
-# Logs ansehen
 docker-compose -f docker-compose.prod.yml logs -f
+
+# 5. Health Status überprüfen
+# Beide Services sollten Status "healthy" zeigen
 ```
 
-#### 5. **Zugriff testen**
-- **Web-Anwendung:** `http://YOUR-DOCKER-HOST:80` (oder Ihr PUBLIC_PORT)
-- **Admin-Login:** Username: `admin`, Passwort: Wie in .env definiert
+### Zugriff
 
-### ⚙️ Konfiguration
+- **Web-Anwendung:** `http://<docker-host>:80` (oder konfigurierter PUBLIC_PORT)
+- **Admin-Login:** Username: `admin`, Passwort: wie in `.env` definiert
+- **API:** Intern auf Port 3000 (nicht extern erreichbar)
 
-#### Environment Variablen (.env)
-| Variable | Beschreibung | Beispiel | Erforderlich |
-|----------|--------------|----------|--------------|
-| `VERSION` | **Image Version - KEINE latest Tags!** | `1.0.4` | ✅ JA |
-| `DOCKER_REGISTRY` | Internes Registry (mit `/` am Ende) | `registry.internal:5000/aio/` | Für Prod: JA |
-| `JWT_SECRET` | JWT-Schlüssel (min. 32 Zeichen) | `MySecureJWTKey2024...` | ✅ JA |
-| `ADMIN_PASSWORD` | Admin-Passwort | `SecureAdmin123!` | ✅ JA |
-| `PUBLIC_PORT` | Externer Port | `80`, `8080` | Nein (default: 80) |
+---
 
-#### Ports & Services
-- **Web-App:** `http://host:${PUBLIC_PORT}`
-- **API:** Läuft intern auf Port 3000 (nicht extern erreichbar)
-- **Volumes:** `./data` → Persistent für alle Konfigurationen
+## Updates
 
-### 🔧 Versionierung
+### Update-Prozess
 
-#### ⚠️ NUR versionierte Images für Production!
-
-**docker-compose.prod.yml ist bereits konfiguriert für Versionierung via .env:**
-```yaml
-services:
-  api:
-    image: ${DOCKER_REGISTRY:-henesseye/}aio-operating-model-api:${VERSION:-latest}
-  web:
-    image: ${DOCKER_REGISTRY:-henesseye/}aio-operating-model-web:${VERSION:-latest}
-```
-
-**Sie müssen nur .env anpassen:**
 ```bash
-# .env
-VERSION=1.0.5  # Aktuelle stabile Version
-DOCKER_REGISTRY=registry.internal:5000/aio/
-```
-
-**Verfügbare Versionen:**
-- Siehe Docker Hub: https://hub.docker.com/r/henesseye/aio-operating-model-api/tags
-- Aktuelle Version: `1.0.5`
-- ⚠️ **NIEMALS `latest` in Production verwenden!**
-
-### 🔄 Updates auf neue Version
-
-#### Schritt-für-Schritt Update-Prozess:
-
-**1. Neue Version ins interne Registry transferieren**
-```bash
-# Neue Version (z.B. 1.0.5)
+# 1. Neue Version ins interne Registry transferieren
 NEW_VERSION=1.0.5
+# (Image Transfer wie oben beschrieben durchführen)
 
-# Von Docker Hub pullen
-docker pull henesseye/aio-operating-model-api:${NEW_VERSION}
-docker pull henesseye/aio-operating-model-web:${NEW_VERSION}
+# 2. .env aktualisieren
+VERSION=1.0.5
 
-# Für internes Registry taggen & pushen (siehe "Image Transfer" Sektion)
-INTERNAL_REGISTRY="registry.internal:5000"
-docker tag henesseye/aio-operating-model-api:${NEW_VERSION} \
-  ${INTERNAL_REGISTRY}/aio/aio-operating-model-api:${NEW_VERSION}
-docker push ${INTERNAL_REGISTRY}/aio/aio-operating-model-api:${NEW_VERSION}
-# (Analog für web)
-```
-
-**2. .env aktualisieren**
-```bash
-# .env bearbeiten
-VERSION=1.0.5  # Neue Version eintragen
-```
-
-**3. Update deployen**
-```bash
-# Neue Images pullen
+# 3. Update deployen
 docker-compose -f docker-compose.prod.yml pull
-
-# Rolling Update (kein Downtime)
 docker-compose -f docker-compose.prod.yml up -d
 
-# Verify
+# 4. Status überprüfen
 docker-compose -f docker-compose.prod.yml ps
 docker-compose -f docker-compose.prod.yml logs -f
 ```
 
-**4. Bei Problemen: Rollback**
+### Rollback
+
 ```bash
-# .env auf alte Version zurücksetzen
+# .env auf vorherige Version setzen
 VERSION=1.0.5
 
 # Alte Version deployen
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-### 📁 Datenpersistierung
+---
 
-```
-./data/
-├── model.json      # Betriebsmodell-Daten (von mir bereitgestellt)
-└── users.json      # User-Daten (wird automatisch erstellt)
-```
+## Datenpersistierung
 
-**⚠️ Wichtig:** Der `./data` Ordner muss persistent sein!
-- **Backup:** Sichern Sie regelmäßig den `./data` Ordner
-- **Permissions:** Stellen Sie sicher, dass Docker schreiben kann (uid 1000)
+Der `./data` Ordner ist persistent und enthält:
+- `model.json` - Betriebsmodell-Daten (wird mitgeliefert)
+- `users.json` - User-Daten (wird automatisch erstellt)
 
-### 🛠️ Troubleshooting
+**Backup-Strategie erforderlich** für `./data` Ordner.
 
-#### Service Status prüfen:
+---
+
+## Troubleshooting
+
+### Häufige Probleme
+
+**Port bereits belegt:**
 ```bash
-docker-compose -f docker-compose.prod.yml ps
-docker-compose -f docker-compose.prod.yml logs -f
-```
-
-#### Häufige Probleme:
-
-**1. Port bereits belegt:**
-```bash
-# .env anpassen:
+# PUBLIC_PORT in .env ändern
 PUBLIC_PORT=8080
-# Neustart:
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-**2. Admin Login funktioniert nicht:**
+**Health Check schlägt fehl:**
 ```bash
-# .env prüfen - ADMIN_PASSWORD korrekt gesetzt?
-# API Container neustarten:
+# Logs prüfen
+docker-compose -f docker-compose.prod.yml logs api
+docker-compose -f docker-compose.prod.yml logs web
+
+# Container neu starten
+docker-compose -f docker-compose.prod.yml restart
+```
+
+**Admin Login fehlgeschlagen:**
+```bash
+# ADMIN_PASSWORD in .env prüfen
+# API Container neu starten
 docker-compose -f docker-compose.prod.yml restart api
 ```
 
-**3. model.json nicht gefunden:**
+**model.json nicht gefunden:**
 ```bash
+# Datei muss vorhanden sein
 ls -la ./data/model.json
-# Muss vorhanden sein, sonst von mir erhalten!
+# Falls fehlend: model.json bereitstellen
 ```
 
-**4. Container startet nicht:**
+### Logs und Diagnostics
+
 ```bash
-# Logs detailliert anzeigen:
+# Alle Logs anzeigen
+docker-compose -f docker-compose.prod.yml logs
+
+# Service-spezifische Logs
 docker-compose -f docker-compose.prod.yml logs api
 docker-compose -f docker-compose.prod.yml logs web
+
+# Live-Logs verfolgen
+docker-compose -f docker-compose.prod.yml logs -f
+
+# Container Status
+docker-compose -f docker-compose.prod.yml ps
 ```
 
-### 🔐 Sicherheit
+---
 
-#### Produktions-Checkliste:
-- [ ] **JWT_SECRET** mindestens 32 Zeichen, zufällig generiert
-- [ ] **ADMIN_PASSWORD** komplex und eindeutig
-- [ ] **Firewall** nur notwendige Ports geöffnet
-- [ ] **HTTPS** Reverse Proxy (nginx/Apache) vor der Anwendung
-- [ ] **Backup** `./data` Ordner regelmäßig sichern
-- [ ] **Updates** Monitoring für neue Image-Versionen
+## Deployment-Checkliste
 
-#### HTTPS Setup (Optional):
-```yaml
-# In Ihrem Reverse Proxy (nginx/Apache)
-# HTTP → HTTPS Redirect
-# SSL-Terminierung vor der Anwendung
-# Proxy zu http://localhost:${PUBLIC_PORT}
-```
+### Image Transfer
+- [ ] Spezifische Version von Docker Hub gepullt (z.B. 1.0.5)
+- [ ] Images für internes Registry getaggt
+- [ ] Images ins interne Registry gepusht
+- [ ] Pull-Test vom internen Registry erfolgreich
 
-### 🏭 Production Best Practices
+### Deployment-Vorbereitung
+- [ ] `docker-compose.prod.yml` platziert
+- [ ] `data/model.json` platziert
+- [ ] `.env` erstellt und konfiguriert:
+  - [ ] `VERSION` gesetzt (keine latest Tags!)
+  - [ ] `DOCKER_REGISTRY` konfiguriert (mit trailing `/`)
+  - [ ] `JWT_SECRET` gesetzt (min. 32 Zeichen)
+  - [ ] `ADMIN_PASSWORD` gesetzt
+  - [ ] `PUBLIC_PORT` angepasst (falls erforderlich)
 
-#### 1. **Monitoring hinzufügen:**
-```yaml
-# Optional: Monitoring Container hinzufügen
-  monitoring:
-    image: prom/prometheus
-    # oder Ihr bevorzugtes Monitoring
-```
+### Deployment-Durchführung
+- [ ] Images gepullt: `docker-compose -f docker-compose.prod.yml pull`
+- [ ] Services gestartet: `docker-compose -f docker-compose.prod.yml up -d`
+- [ ] Status geprüft: beide Services `Up` und `healthy`
+- [ ] Logs überprüft: keine Errors
 
-#### 2. **Resource Limits:**
-```yaml
-# In docker-compose.prod.yml erweitern:
-  api:
-    image: henesseye/aio-operating-model-api:latest
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-          cpus: '0.5'
-```
-
-#### 3. **Health Checks:**
-```yaml
-  api:
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-```
-
-### 📞 Support & Updates
-
-**Bei technischen Problemen:**
-- Logs sammeln: `docker-compose logs > deployment-logs.txt`
-- Systeminfo: `docker info > docker-info.txt`
-- An: Daniel Heiniger
-
-**Neue Versionen:**
-- Sie erhalten Benachrichtigung bei neuen Releases
-- Update-Anweisungen werden mitgeliefert
-- Breaking Changes werden im Voraus kommuniziert
-
-### 🎯 Deployment-Checkliste für Docker-Crew
-
-#### Vor dem Deployment:
-- [ ] **Images ins interne Repository transferiert** (siehe "Image Transfer" Sektion)
-  - [ ] Spezifische Version von Docker Hub gepullt (z.B. 1.0.5)
-  - [ ] Images für internes Registry getaggt
-  - [ ] Images ins interne Registry gepusht
-  - [ ] Pull-Test vom internen Registry erfolgreich
-
-#### Deployment-Dateien:
-- [ ] `docker-compose.prod.yml` erhalten
-- [ ] `env.example` erhalten
-- [ ] `data/model.json` erhalten und platziert
-- [ ] `DEPLOYMENT.md` gelesen und verstanden
-
-#### Konfiguration:
-- [ ] `.env` erstellt (aus env.example kopiert)
-- [ ] `VERSION` in .env gesetzt (z.B. `VERSION=1.0.5`) - **KEINE latest Tags!**
-- [ ] `DOCKER_REGISTRY` in .env konfiguriert (mit trailing `/`)
-- [ ] `JWT_SECRET` geändert (min. 32 Zeichen, zufällig)
-- [ ] `ADMIN_PASSWORD` geändert (sicher und eindeutig)
-- [ ] `PUBLIC_PORT` angepasst (falls erforderlich)
-
-#### Deployment:
-- [ ] Images vom internen Registry gepullt: `docker-compose pull`
-- [ ] Services gestartet: `docker-compose up -d`
-- [ ] Status geprüft: `docker-compose ps` (beide Services "Up")
-- [ ] Logs überprüft: `docker-compose logs` (keine Errors)
-
-#### Funktionstest:
-- [ ] Web-App erreichbar unter `http://host:${PUBLIC_PORT}`
-- [ ] Admin-Login getestet (Username: `admin`)
-- [ ] Visualisierung funktioniert (Prozesse/Services Toggle)
+### Funktionstests
+- [ ] Web-App unter `http://<host>:<port>` erreichbar
+- [ ] Admin-Login erfolgreich (Username: `admin`)
+- [ ] Prozesse/Services Toggle funktioniert
 - [ ] Admin-Panel erreichbar
+- [ ] Verbindungsvisualisierung funktioniert
 
-#### Security & Betrieb:
-- [ ] Firewall-Regeln konfiguriert (nur notwendige Ports offen)
-- [ ] Backup-Strategie für `./data` Ordner eingerichtet
-- [ ] Monitoring eingerichtet (optional)
-- [ ] Update-Prozess dokumentiert und getestet
+### Security & Betrieb
+- [ ] Firewall-Regeln konfiguriert
+- [ ] Backup-Strategie für `./data` eingerichtet
+- [ ] HTTPS Reverse Proxy konfiguriert (empfohlen)
+- [ ] Update-Prozess dokumentiert
 
-#### CVE-Check erfüllt:
-- [x] **API Image: 0 HIGH/CRITICAL CVEs** (alle behoben)
-- [x] **Web Image: Alle fixbaren CVEs behoben** (2 HIGH nicht fixbar, geringes Risiko)
-- [x] Nur versionierte Images verwendet (keine latest Tags)
-- [x] Images aus internem Registry
-- [x] Docker Scout Scan durchgeführt und dokumentiert
-
-**✅ Ready für Production! 🚀**
+### Security-Compliance
+- [x] API Image: 0 HIGH/CRITICAL CVEs
+- [x] Web Image: Alle fixbaren CVEs behoben
+- [x] Health Checks aktiv
+- [x] Nur versionierte Images (keine latest Tags)
+- [x] Non-root User für Web-Container
