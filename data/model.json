@@ -454,6 +454,11 @@
           "title": "Projektmanagement Handbuch",
           "url": "/docs/pm-handbuch.pdf",
           "type": "document"
+        },
+        {
+          "title": "KAM E-Mail",
+          "url": "kam@aio.so.ch",
+          "type": "email"
         }
       ],
       "services": [
