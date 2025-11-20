@@ -490,6 +490,11 @@
               "title": "Beratungs-Service",
               "url": "https://beratung.so.ch",
               "type": "internal"
+            },
+            {
+              "title": "E-Mail KAM",
+              "url": "kam@aio.so.ch",
+              "type": "email"
             }
           ],
           "order": 2,
