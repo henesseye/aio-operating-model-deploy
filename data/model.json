@@ -1373,26 +1373,6 @@
       "description": "Workflow von Incident Management zu Problem Management zu Service Request Management"
     },
     {
-      "id": "development-deployment",
-      "name": "Development & Deployment",
-      "source": "e01",
-      "targets": [
-        "e02",
-        "b04"
-      ],
-      "description": "Von Application Development über Integration zu Release Management"
-    },
-    {
-      "id": "infrastructure-monitoring",
-      "name": "Infrastructure & Monitoring",
-      "source": "i01",
-      "targets": [
-        "i02",
-        "b03"
-      ],
-      "description": "Infrastructure Management mit Monitoring und Incident Response"
-    },
-    {
       "id": "connection-g03",
       "name": "Verbindungen für G03",
       "source": "g03",
