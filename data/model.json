@@ -388,27 +388,23 @@
           "code": "U3-8",
           "abbr": "U08",
           "name": "U08 Alabu",
-          "description": "Arbeitsplatz- und Büromanagement sowie Facility Services für AIO",
+          "description": "Anlagebuchhaltung",
           "links": [
             {
-              "title": "Arbeitsplatz-Katalog",
-              "url": "https://facility.so.ch/katalog",
-              "type": "internal"
-            },
-            {
-              "title": "Raumbuchung",
+              "title": "WOV",
               "url": "https://booking.so.ch",
               "type": "internal"
             }
           ],
           "order": 8,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "zentrale"
         },
         {
           "id": "u09",
           "code": "U1",
           "abbr": "U09",
-          "name": "U09 Personal Management",
+          "name": "Personal Management",
           "description": "Personalplanung, -entwicklung und -administration für die AIO-Organisation",
           "links": [
             {
@@ -428,7 +424,8 @@
             }
           ],
           "order": 9,
-          "is_visible": true
+          "is_visible": true,
+          "segmentKey": "zentrale"
         }
       ]
     },

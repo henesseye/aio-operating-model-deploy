@@ -117,6 +117,11 @@ ADMIN_PASSWORD=<sicheres-passwort>
 
 # Netzwerk
 PUBLIC_PORT=80
+
+# Darstellung (optional)
+# true = Headless-Modus für Embedding (ohne Header/Admin)
+# false = Normale Ansicht (Standard)
+VITE_HEADLESS_MODE=false
 ```
 
 **Wichtig:**
@@ -148,8 +153,55 @@ docker-compose -f docker-compose.prod.yml logs -f
 ### Zugriff
 
 - **Web-Anwendung:** `http://<docker-host>:80` (oder konfigurierter PUBLIC_PORT)
+- **Headless-Modus:** `http://<docker-host>:80?headless=true`
 - **Admin-Login:** Username: `admin`, Passwort: wie in `.env` definiert
 - **API:** Intern auf Port 3000 (nicht extern erreichbar)
+
+---
+
+## Headless Mode (Embedding)
+
+Die Anwendung unterstützt einen Headless-Modus für die Einbettung in andere Anwendungen (z.B. Intranet, SharePoint).
+
+### Aktivierung
+
+**Option 1: URL-Parameter (empfohlen für Embedding)**
+```
+http://<docker-host>:80?headless=true
+```
+Der URL-Parameter überschreibt immer die Environment-Variable.
+
+**Option 2: Environment-Variable (für dediziertes Headless-Deployment)**
+```bash
+VITE_HEADLESS_MODE=true
+```
+
+### Was im Headless-Modus ausgeblendet wird
+- Header (Logo, Titel "AIO-Betriebsmodell", Kanton-Logo)
+- Admin-Button / Login
+- Admin-Hinweis ("Rechtsklick für Bearbeiten")
+
+### Was sichtbar bleibt
+- Ansicht-Toggle (Prozesse/Services)
+- Tipp-Zeile
+- Kollapsibles Bottom-Panel mit Info-Cards
+- Alle Interaktionen (Segmente, Hover-Effekte, Detail-Overlays)
+
+### Embedding-Beispiel
+
+```html
+<iframe
+  src="http://<docker-host>:80?headless=true"
+  width="100%"
+  height="800px"
+  frameborder="0"
+  style="border-radius: 12px; border: 1px solid #e2e8f0;">
+</iframe>
+```
+
+### Sicherheitshinweis
+
+Admin-Funktionen sind nur über die normale URL (ohne `?headless=true`) erreichbar. Eingebettete Versionen können das Modell nicht bearbeiten.
 
 ---
 
@@ -267,6 +319,7 @@ docker-compose -f docker-compose.prod.yml ps
   - [ ] `JWT_SECRET` gesetzt (min. 32 Zeichen)
   - [ ] `ADMIN_PASSWORD` gesetzt
   - [ ] `PUBLIC_PORT` angepasst (falls erforderlich)
+  - [ ] `VITE_HEADLESS_MODE` gesetzt (optional, für Embedding)
 
 ### Deployment-Durchführung
 - [ ] Images gepullt: `docker-compose -f docker-compose.prod.yml pull`
@@ -280,6 +333,7 @@ docker-compose -f docker-compose.prod.yml ps
 - [ ] Prozesse/Services Toggle funktioniert
 - [ ] Admin-Panel erreichbar
 - [ ] Verbindungsvisualisierung funktioniert
+- [ ] Headless-Modus: `http://<host>:<port>?headless=true` (ohne Header/Admin)
 
 ### Security & Betrieb
 - [ ] Firewall-Regeln konfiguriert
