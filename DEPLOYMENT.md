@@ -2,21 +2,20 @@
 
 ## Sicherheitsstatus
 
-### CVE-Status (Stand: 2025-11-11)
+### CVE-Status (Stand: 2025-12-02)
 
 **API Image:**
-- ✅ **0 CRITICAL, 0 HIGH CVEs**
-- CVE-2025-9230 (OpenSSL 3.3.5) - behoben
-- CVE-2024-21538 (npm cross-spawn 7.0.5) - behoben
+- ⚠️ **0 CRITICAL, 1 HIGH CVE (nicht fixbar)**
+- CVE-2025-31498 (c-ares 1.33.1) - kein Fix in Alpine 3.20 verfügbar
 
 **Web Image:**
-- ⚠️ **0 CRITICAL, 2 HIGH CVEs (nicht fixbar)**
-- CVE-2025-9230 (OpenSSL 3.3.5) - behoben
-- CVE-2025-5399, CVE-2025-9086 (curl 8.14.1-r2) - behoben
-- CVE-2025-6021 (libxml2) - kein Fix in Alpine 3.20 verfügbar
-- CVE-2025-31498 (c-ares) - kein Fix in Alpine 3.20 verfügbar
+- ⚠️ **0 CRITICAL, 4 HIGH CVEs (nicht fixbar)**
+- CVE-2025-31498 (c-ares 1.33.1) - kein Fix in Alpine 3.20 verfügbar
+- CVE-2025-65018 (libpng 1.6.44) - kein Fix in Alpine 3.20 verfügbar
+- CVE-2025-64720 (libpng 1.6.44) - kein Fix in Alpine 3.20 verfügbar
+- CVE-2025-6021 (libxml2 2.12.10) - kein Fix in Alpine 3.20 verfügbar
 
-Die verbleibenden CVEs betreffen System-Bibliotheken ohne direkten Angriffsvektor in dieser Architektur. Web-Container läuft als non-root User.
+**Risiko-Einschätzung:** Gering. Alle CVEs betreffen System-Bibliotheken (DNS-Resolver, Bildverarbeitung, XML-Parser) ohne direkten Angriffsvektor in dieser Architektur. Web-Container läuft als non-root User, kein direkter User-Upload von Bildern/XML.
 
 **CVE-Scan:**
 ```bash
@@ -342,8 +341,9 @@ docker-compose -f docker-compose.prod.yml ps
 - [ ] Update-Prozess dokumentiert
 
 ### Security-Compliance
-- [x] API Image: 0 HIGH/CRITICAL CVEs
-- [x] Web Image: Alle fixbaren CVEs behoben
+- [x] API Image: 0 CRITICAL CVEs, 1 HIGH (nicht fixbar in Alpine 3.20)
+- [x] Web Image: 0 CRITICAL CVEs, 4 HIGH (nicht fixbar in Alpine 3.20)
+- [x] Alle fixbaren CVEs behoben
 - [x] Health Checks aktiv
 - [x] Nur versionierte Images (keine latest Tags)
 - [x] Non-root User für Web-Container
