@@ -1,15 +1,20 @@
-# Production Docker Compose - für interne Docker Registry
+# Production Docker Compose - für Kanton SO Docker-Umgebung
 # Verwendung: docker-compose -f docker-compose.prod.yml up -d
 #
 # WICHTIG für Docker-Crew:
-# 1. VERSION in .env setzen (z.B. VERSION=1.0.4)
-# 2. DOCKER_REGISTRY in .env setzen (z.B. DOCKER_REGISTRY=your-registry.internal:5000/)
-# 3. Images müssen VOR dem Deploy ins interne Repo transferiert werden
-# 4. KEINE latest Tags verwenden - nur versionierte Images!
+# 1. VERSION in .env setzen (z.B. VERSION=1.0.6)
+# 2. DOCKER_REGISTRY in .env setzen (z.B. DOCKER_REGISTRY=harbor-aio.so.ch/aio/)
+# 3. VHOST in .env setzen (z.B. VHOST=aio-betriebsmodell.so.ch)
+# 4. Images müssen VOR dem Deploy ins interne Repo transferiert werden
+# 5. KEINE latest Tags verwenden - nur versionierte Images!
+#
+# Der zentrale nginx-proxy auf dem Docker Host terminiert TLS und leitet
+# Traffic über VIRTUAL_HOST/VIRTUAL_PORT an diese Applikation weiter.
 
 services:
   api:
     image: ${DOCKER_REGISTRY:-henesseye/}aio-operating-model-api:${VERSION:-latest}
+    container_name: aio-betriebsmodell-api
     restart: always
     environment:
       JWT_SECRET: ${JWT_SECRET:-changeme-jwt-secret}
@@ -21,6 +26,8 @@ services:
       - ./data:/data
     expose:
       - "3000"
+    networks:
+      - backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -30,15 +37,32 @@ services:
 
   web:
     image: ${DOCKER_REGISTRY:-henesseye/}aio-operating-model-web:${VERSION:-latest}
+    container_name: aio-betriebsmodell-web
     restart: always
     depends_on:
       api:
         condition: service_healthy
-    ports:
-      - "${PUBLIC_PORT:-80}:8080"
+    environment:
+      # NOTWENDIG FÜR ZENTRALEN REVERSE PROXY
+      VIRTUAL_HOST: ${VHOST:-aio-betriebsmodell.so.ch}
+      VIRTUAL_PORT: ${VPORT:-8080}
+    expose:
+      - "8080"
+    networks:
+      - frontend
+      - backend
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
+
+networks:
+  # Externes Netzwerk für zentralen nginx-proxy (TLS-Terminierung)
+  frontend:
+    name: frontendproxy_bridge-net
+    external: true
+  # Internes Netzwerk für api <-> web Kommunikation
+  backend:
+    driver: bridge

@@ -27,4 +27,4 @@ docker-compose -f docker-compose.prod.yml pull
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-Letzte Aktualisierung: Di  2 Dez 2025 08:20:20 CET
+Letzte Aktualisierung: Do  4 Dez 2025 08:13:29 CET
