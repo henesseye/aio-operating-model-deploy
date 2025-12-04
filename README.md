@@ -7,7 +7,7 @@
 ```bash
 git clone https://github.com/henesseye/aio-operating-model-deploy.git
 cd aio-operating-model-deploy
-cp env.example .env
+cp .env.example .env
 # .env bearbeiten (Passwörter ändern!)
 docker-compose -f docker-compose.prod.yml up -d
 ```
@@ -27,4 +27,4 @@ docker-compose -f docker-compose.prod.yml pull
 docker-compose -f docker-compose.prod.yml up -d
 ```
 
-Letzte Aktualisierung: Do  4 Dez 2025 08:13:29 CET
+Letzte Aktualisierung: Do  4 Dez 2025 08:23:26 CET
