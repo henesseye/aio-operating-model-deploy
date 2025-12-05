@@ -16,6 +16,7 @@ services:
     image: ${DOCKER_REGISTRY:-henesseye/}aio-operating-model-api:${VERSION:-latest}
     container_name: aio-betriebsmodell-api
     restart: always
+    user: "20105:20105"  # aioom-p - must exist on Docker host
     environment:
       JWT_SECRET: ${JWT_SECRET:-changeme-jwt-secret}
       ADMIN_PASSWORD: ${ADMIN_PASSWORD:-Admin123!}
@@ -39,6 +40,7 @@ services:
     image: ${DOCKER_REGISTRY:-henesseye/}aio-operating-model-web:${VERSION:-latest}
     container_name: aio-betriebsmodell-web
     restart: always
+    user: "20105:20105"  # aioom-p - consistent with api container
     depends_on:
       api:
         condition: service_healthy
